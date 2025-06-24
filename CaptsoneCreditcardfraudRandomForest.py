@@ -13,7 +13,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.metrics import accuracy_score,precision_score, roc_auc_score
 from sklearn.metrics import roc_curve, auc,f1_score,recall_score
 
-# Read the data set, provide tha local path of the file
+# Read the data set, provide the local path of the file
 df= pd.read_csv('/Users/preetisirohi/Documents/Capstone/Dataset/Preeti_creditcard_2023.csv')
 # Prints the top 5 rows of the dataset
 print("------ Print the top 5 rows of the dataset ------")
