@@ -1,4 +1,4 @@
-# First step is to install Libraries in terminal and then import them in Py file
+e# First step is to install Libraries in terminal and then import them in Py file
 import pandas as pd
 import numpy as np
 # Below 2 libraries are for visualisation
@@ -18,7 +18,7 @@ df= pd.read_csv('/Users/preetisirohi/Documents/Capstone/Dataset/Preeti_creditcar
 # Prints the top 5 rows of the dataset
 print("------ Print the top 5 rows of the dataset ------")
 print(df.head())
-# To check basic information about tha data
+# To check basic information about the data
 print("------ Basic information about the dataset ------")
 df.info()
 
