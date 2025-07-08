@@ -1,4 +1,5 @@
-This project is for detecting creditcard frauds using machne learning alogorithm.
+This is my capstone project for MBA.
+The topic is "Detecting creditcard frauds using machne learning alogorithm"
 The alogorith used are Random Forest, Logstic Regression and CNN
 
 The dataset is downloaded from kaggle Path: 
