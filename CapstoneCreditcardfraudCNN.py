@@ -76,3 +76,17 @@ plt.ylabel('Accuracy')
 plt.legend()
 plt.title('Model Accuracy over Epochs')
 plt.show()
+
+# Calculate FPR and TPR and Thershold
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+
+# Plot ROC AUC Curve for CNN
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color='darkorange',label=f'ROC Curve (AUC = {roc_auc_score(y_test, y_pred_proba):.4f})')
+plt.plot([0, 1], [0, 1], linestyle='--', color='navy')  # Diagonal line
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.legend(loc='lower right')
+plt.grid()
+plt.show()
