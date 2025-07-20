@@ -68,7 +68,7 @@ plt.xlabel('Feature Correlation Matrix')
 plt.tight_layout()
 plt.show()
 
-# Step 8: Plot ROC AUC curve
+# Step 8: Plot model accuracy curve
 plt.plot(history.history['accuracy'], label='Train Accuracy')
 plt.plot(history.history['val_accuracy'], label='Val Accuracy')
 plt.xlabel('Epochs')
