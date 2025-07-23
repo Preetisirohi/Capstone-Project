@@ -8,7 +8,7 @@ import seaborn as sns
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Dropout
 from tensorflow.keras.optimizers import Adam
-
+from sklearn.metrics import roc_curve
 # Load dataset
 data = pd.read_csv("/Users/preetisirohi/Documents/Capstone/Dataset/Preeti_creditcard_2023.csv")  # Replace with your file
 
@@ -18,8 +18,12 @@ y = data["Class"]
 
 # Step 2: Split the dataset into a training and a test dataset
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
+print(y.value_counts(normalize=True))
 
-# Step 3: Feature scaling to make sure each feature contribute equally
+print("Test set class distribution:")
+print(y_test.value_counts(normalize=True))
+
+# Step 3: Feature scaling to make sure each feature contributes equally
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
@@ -46,12 +50,13 @@ history = model.fit(X_train_cnn, y_train, epochs=10, batch_size=512, validation_
 # Step 7: Model prediction
 y_pred_proba = model.predict(X_test_cnn)
 y_pred = (y_pred_proba >= 0.5).astype(int)
+print(np.unique(y_pred))
 
-print("\n CNN model Performance and Accuracy:\n", classification_report(y_test, y_pred))
+print("\n------ CNN model Performance and Accuracy------\n", classification_report(y_test, y_pred, digits= 3))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
 print(f"ROC AUC Score: {roc_auc_score(y_test, y_pred_proba):.4f}")
 
-# Confusion Matrix
+# Step 8:Confusion Matrix
 plt.figure(figsize=(8,6))
 cm = confusion_matrix(y_test, y_pred)
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
@@ -60,7 +65,7 @@ plt.xlabel('Predicted Label')
 plt.ylabel('True Label')
 plt.show()
 
-# Correlation Matrix
+# Step 9:Correlation Matrix
 plt.figure(figsize=(12, 8))
 correlation_matrix = X.corr()
 sns.heatmap(correlation_matrix, cmap='coolwarm', center=0, annot=True, fmt='.2f')
@@ -68,7 +73,7 @@ plt.xlabel('Feature Correlation Matrix')
 plt.tight_layout()
 plt.show()
 
-# Step 8: Plot model accuracy curve
+# Step 10: Plot Model accuracy curve
 plt.plot(history.history['accuracy'], label='Train Accuracy')
 plt.plot(history.history['val_accuracy'], label='Val Accuracy')
 plt.xlabel('Epochs')
