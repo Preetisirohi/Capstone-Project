@@ -42,7 +42,7 @@ print(x_test.shape)
 # Features scaling is imp to make sure features are contributing equally
 scaler = StandardScaler()
 x_train_scaled = scaler.fit_transform(x_train)
-x_test_scaled = scaler.fit_transform(x_test)
+x_test_scaled = scaler.transform(x_test)
 # To check class distribution  in training dataset
 print("------ Class distribution of Training dataset ------")
 print(pd.Series(y_train).value_counts(normalize = True))
@@ -65,7 +65,7 @@ rf_model.fit(x_train_scaled,y_train)
 # Now we will do the model prediction
 print('------ Random Forest Model performance and Accuracy ------')
 y_pred = rf_model.predict(x_test_scaled)
-print(classification_report(y_test,y_test, digits=3 ))
+print(classification_report(y_test,y_pred, digits=3 ))
 
 plt.figure(figsize=(8,6))
 cm = confusion_matrix(y_test,y_pred)
